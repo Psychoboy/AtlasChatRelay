@@ -81,15 +81,22 @@ namespace ChatRelay
 
         private void ProcessChat(CommandExecutedEventArgs args)
         {
-            if (args.Response.StartsWith("Server received") || args.Response.StartsWith("(") || args.Response.StartsWith("SERVER:") || args.Response.Trim().Length == 0)
-            {
-                //Do Nothing
-                //Console.WriteLine($"{Name} Nothing to send.");
-            }
-            else
+            if (ProcessResponse(args.Response))
             {
                 MessageReceived?.Invoke(this, $"({Name}) {args.Response}");
             }
+        }
+
+        private bool ProcessResponse(string message)
+        {
+            var doNotProcess = (
+                message.StartsWith("Server received") || 
+                message.StartsWith("(") ||
+                message.StartsWith("SERVER:") || 
+                message.Trim().Length == 0 ||
+                message.StartsWith("AdminCmd"));
+
+            return !doNotProcess;
         }
 
         public void SendChat(string message)
