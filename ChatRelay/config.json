@@ -1,0 +1,74 @@
+{
+	"Servers": [{
+		"Name": "A1",
+		"Host": "ADDRESSHERE",
+		"Port": 32000,
+		"Password": "RCONPASSWORD"
+	},
+	{
+		"Name": "B1",
+		"Host": "ADDRESSHERE",
+		"Port": 32010,
+		"Password": "RCONPASSWORD"
+	},
+	{
+		"Name": "C1",
+		"Host": "ADDRESSHERE",
+		"Port": 32020,
+		"Password": "RCONPASSWORD"
+	},
+	{
+		"Name": "A2",
+		"Host": "ADDRESSHERE",
+		"Port": 32001,
+		"Password": "RCONPASSWORD"
+	},
+	{
+		"Name": "B2",
+		"Host": "ADDRESSHERE",
+		"Port": 32011,
+		"Password": "RCONPASSWORD"
+	},
+	{
+		"Name": "C2",
+		"Host": "ADDRESSHERE",
+		"Port": 32021,
+		"Password": "RCONPASSWORD"
+	},
+	{
+		"Name": "A3",
+		"Host": "ADDRESSHERE",
+		"Port": 32002,
+		"Password": "RCONPASSWORD"
+	},
+	{
+		"Name": "B3",
+		"Host": "ADDRESSHERE",
+		"Port": 32012,
+		"Password": "RCONPASSWORD"
+	},
+	{
+		"Name": "C3",
+		"Host": "ADDRESSHERE",
+		"Port": 32022,
+		"Password": "RCONPASSWORD"
+	},
+	{
+		"Name": "A4",
+		"Host": "ADDRESSHERE",
+		"Port": 32003,
+		"Password": "RCONPASSWORD"
+	},
+	{
+		"Name": "B4",
+		"Host": "ADDRESSHERE",
+		"Port": 32013,
+		"Password": "RCONPASSWORD"
+	},
+	{
+		"Name": "C4",
+		"Host": "ADDRESSHERE",
+		"Port": 32023,
+		"Password": "RCONPASSWORD"
+	}]
+}

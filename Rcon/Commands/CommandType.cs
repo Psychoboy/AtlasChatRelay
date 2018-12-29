@@ -1,0 +1,36 @@
+﻿namespace Rcon.Commands
+{
+    public enum CommandType
+    {
+        Raw,
+        GetChat,
+        AllowPlayerToJoinNoCheck,
+        BanPlayer,
+        Broadcast,
+        DestroyAllEnemies,
+        DisableSpectator,
+        EnableSpectator,
+        DisallowPlayerToJoinNoCheck,
+        DoExit,
+        ForcePlayerToJoinTribe,
+        GiveExpToPlayer,
+        KickPlayer,
+        KillPlayer,
+        ListPlayers,
+        SaveWorld,
+        ServerChat,
+        ServerChatTo,
+        ServerChatToPlayer,
+        SetMessageOfTheDay,
+        SetTimeOfDay,
+        ShowMessageOfTheDay,
+        UnbanPlayer,
+        OpenMap,
+        GetGameLog,
+        DestroyWildDinos,
+        DestroyStructures,
+        RenamePlayer,
+        RenameTribe,
+        Custom
+    }
+}
