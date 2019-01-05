@@ -9,5 +9,6 @@ namespace ChatRelay
     public class ServerConfig
     {
         public List<Server> Servers { get; set; } = new List<Server>();
+        public bool RconOnly { get; set; } = false;
     }
 }

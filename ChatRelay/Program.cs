@@ -47,6 +47,10 @@ namespace ChatRelay
 
         private static void Server_MessageReceived(object sender, string e)
         {
+            if(_servers.RconOnly)
+            {
+                return;
+            }
             foreach (var obj in _servers.Servers)
             {
                 var server = (Server)obj;
