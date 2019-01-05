@@ -10,3 +10,4 @@ TODO:
 * Parse names so only the name is in chat and not both Steam and player name
 * More configuration options
 * Allow to filter out tribe chat when company logging is enabled
+* ~~Support Rcon Only~~
