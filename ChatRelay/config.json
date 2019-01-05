@@ -1,4 +1,5 @@
 {
+	"RconOnly":false,
 	"Servers": [{
 		"Name": "A1",
 		"Host": "ADDRESSHERE",
