@@ -1,3 +1,5 @@
+Requires .NET 4.6.1
+
 edit config.json with your server(s) rcon information
 
 Run ChatRelay.exe and it should start right up and start relaying messages.
