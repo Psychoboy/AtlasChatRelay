@@ -27,17 +27,18 @@ namespace ChatRelay
                 server.MessageReceived += Server_MessageReceived;
                 server.Connect();
             }
+
             bool quit = false;
             while (!quit)
             {
                 var result = Console.ReadLine();
-                if(result.ToLower() == "q")
+                if (result.ToLower() == "q")
                 {
                     quit = true;
                 }
-                else if(result.Trim().Length > 0)
+                else if (result.Trim().Length > 0)
                 {
-                    foreach(var server in _servers.Servers)
+                    foreach (var server in _servers.Servers)
                     {
                         server.SendCustomMessage(result.Trim());
                     }
@@ -47,10 +48,14 @@ namespace ChatRelay
 
         private static void Server_MessageReceived(object sender, string e)
         {
-            if(_servers.RconOnly)
+            if (_servers.RconOnly)
             {
                 return;
             }
+            var messages = e.Split(
+                    new[] { Environment.NewLine },
+                    StringSplitOptions.None
+                );
             foreach (var obj in _servers.Servers)
             {
                 var server = (Server)obj;
@@ -59,16 +64,22 @@ namespace ChatRelay
                     continue;
                 }
 
-                var messages = e.Split(
-                    new[] { Environment.NewLine },
-                    StringSplitOptions.None
-                );
-                foreach (var message in messages)
-                {
-                        server.SendChat(message);
-                }
+                SendServerMessage(server, messages);
                 Console.WriteLine($"SENDING {e} to {server.Name}");
             }
+        }
+
+        private static void SendServerMessage(Server server, String[] messages)
+        {
+            foreach (var message in messages)
+            {
+                server.SendChat(message);
+            }
+        }
+
+        public static void LogMessage(string message)
+        {
+            Console.WriteLine(message);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace ChatRelay
     public class Server
     {
         public event EventHandler<String> MessageReceived;
+        public event EventHandler<String> MessageResponse;
 
         private RconClient _client = new Rcon.RconClient();
         private Timer _timer;
@@ -45,17 +46,19 @@ namespace ChatRelay
 
         private void _client_Connected(object sender, EventArgs e)
         {
-            Console.WriteLine($"{Name} connected.");
+            Program.LogMessage($"{Name} connected.");
         }
 
         private void _client_Disconnected(object sender, bool e)
         {
-            Connect();
+            Program.LogMessage($"{Name} disconnected.");
+            //Connect();
         }
 
         private void _client_ConnectionFailed(object sender, string e)
         {
-            Connect();
+            Console.WriteLine($"{Name} connection failed.");
+            //Connect();
         }
 
         private void _timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -90,9 +93,9 @@ namespace ChatRelay
         private bool ProcessResponse(string message)
         {
             var doNotProcess = (
-                message.StartsWith("Server received") || 
+                message.StartsWith("Server received") ||
                 message.StartsWith("(") ||
-                message.StartsWith("SERVER:") || 
+                message.StartsWith("SERVER:") ||
                 message.Trim().Length == 0 ||
                 message.StartsWith("AdminCmd"));
 
@@ -106,7 +109,10 @@ namespace ChatRelay
 
         public void SendCustomMessage(string message)
         {
-            _client.ExecuteCommandAsync(new Rcon.Commands.CustomCommand(message), (ev, args) => { Console.WriteLine($"{Name}: Response: {args.Response}"); });
+            _client.ExecuteCommandAsync(new Rcon.Commands.CustomCommand(message), (ev, args) => {
+                Console.WriteLine($"{Name}: Response: {args.Response}");
+                MessageResponse?.Invoke(this, $"{Name}: Response: {args.Response}");
+            });
         }
 
         public void Connect()
