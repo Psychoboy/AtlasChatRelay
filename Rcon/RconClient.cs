@@ -117,7 +117,9 @@ namespace Rcon
         public void ExecuteCommandAsync(Command command, EventHandler<CommandExecutedEventArgs> callback)
         {
             lock (queue)
-                queue.Enqueue(new KeyValuePair<Command, EventHandler<CommandExecutedEventArgs>>(command, callback), 5);
+            {
+                queue.Enqueue(new KeyValuePair<Command, EventHandler<CommandExecutedEventArgs>>(command, callback), -queue.Count);
+            }
 
             resetEvent.Set();
         }
@@ -164,7 +166,7 @@ namespace Rcon
                             entry.Value?.Invoke(this, commandExecutedEventArgs);
                             CommandExecuted?.Invoke(this, commandExecutedEventArgs);
                         }
-                        catch(SocketException sEx)
+                        catch (SocketException sEx)
                         {
                             Disconnect(false);
 
@@ -198,7 +200,7 @@ namespace Rcon
                     resetEvent.WaitOne();
                 }
             }
-            catch(ThreadAbortException tEx)
+            catch (ThreadAbortException tEx)
             {
 
             }

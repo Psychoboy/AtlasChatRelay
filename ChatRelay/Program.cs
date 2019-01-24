@@ -73,8 +73,37 @@ namespace ChatRelay
         {
             foreach (var message in messages)
             {
-                server.SendChat(message);
+                var lines = Split(message, 45);
+                foreach (var lb in lines)
+                {
+                    server.SendChat(lb);
+                }
             }
+        }
+
+        static IEnumerable<string> Split(string str, int chunkSize)
+        {
+            int partLength = chunkSize;
+            string sentence = str;
+            string[] words = sentence.Split(' ');
+            var parts = new List<string>();
+            string part = string.Empty;
+            int partCounter = 0;
+            foreach (var word in words)
+            {
+                if (part.Length + word.Length < partLength)
+                {
+                    part += string.IsNullOrEmpty(part) ? word : " " + word;
+                }
+                else
+                {
+                    parts.Add(part);
+                    part = word;
+                    partCounter++;
+                }
+            }
+            parts.Add(part);
+            return parts;
         }
 
         public static void LogMessage(string message)

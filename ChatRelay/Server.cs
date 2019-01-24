@@ -57,7 +57,7 @@ namespace ChatRelay
 
         private void _client_ConnectionFailed(object sender, string e)
         {
-            Console.WriteLine($"{Name} connection failed.");
+            Console.WriteLine($"{Name} connection failed. Error: {e}");
             //Connect();
         }
 
@@ -86,7 +86,12 @@ namespace ChatRelay
         {
             if (ProcessResponse(args.Response))
             {
-                MessageReceived?.Invoke(this, $"({Name}) {args.Response}");
+                var message = args.Response;
+                var last = message.IndexOf(")");
+                var first = message.IndexOf("(");
+                var name = message.Substring(first + 1, last - first - 1);
+                message = message.Substring(last + 1);
+                MessageReceived?.Invoke(this, $"({Name}) {name} {message}");
             }
         }
 
