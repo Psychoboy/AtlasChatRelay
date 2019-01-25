@@ -11,7 +11,7 @@ To send an rcon command to any server just type it out in the console and press 
 to quit to type 'q' and press enter and it will quit
 
 TODO:
-* Parse names so only the name is in chat and not both Steam and player name
+* ~~Parse names so only the name is in chat and not both Steam and player name~~
 * More configuration options
 * Allow to filter out tribe chat when company logging is enabled
 * ~~Support Rcon Only~~
